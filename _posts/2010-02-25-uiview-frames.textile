@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Scrapping boilerplate with blocks: UIView frames"
+---
+
+h1. {{ page.title }}
+
+p(meta). 25 Feb 2010
+
+<p>I've been rocking PLBLocks in a recent iPhone project, and really loving it. Here's a quick example of how you can use blocks to make your code more clear.</p>
+<p>Most cocoa developers would be familiar with the process to modify the frame of a view:</p>
+<script src="http://gist.github.com/314235.js?file=start.m"></script>
+<p>You can't modify the frame directly as it gets copied when you access it. For example, `view.frame.origin.x = 5` has <b>no</b> effect on the view's frame, as `view.frame` returns a copy and the origin is modified only on that copy.</p>
+<p>Instead, you must access the frame separately (which gives you a copy to modify) and then assign it back to the view. Let's see if we can abstract on this idea.</p>
+<p>First, the category:</p>
+<script src="http://gist.github.com/314235.js?file=the_category.m"></script>
+<p>The category adds one method, `modifyFrame`. It expects a block which will be a applied to a CGRect pointer. Adding a typedef for the block-type, CGRectF, makes the `modifyFrame` signature much easier to read (and declare).</p>
+<p>In the body of `modifyFrame`, we take a copy of the view's frame and then pass it via reference into the block. (If we passed the CGRect by value, a copy would be passed to the block and any changes made to it would be lost).</p>
+<p>Finally, we assign the frame back to the view.</p>
+<p>And now, the new calling code:</p>
+<script src="http://gist.github.com/314235.js?file=final.m"></script>
