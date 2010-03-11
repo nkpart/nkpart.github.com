@@ -9,70 +9,20 @@ p(meta). 11 Mar 2010
 
 By allowing you to define yet-to-be-evaluated chunks of code that encapsulate the environment in which they're defined, blocks let you build control structures.
 
-For example, given this:
+For example, given this fairly typical example:
+<script src="http://gist.github.com/329003.js?file=1.m"></script>
 
-- (void)didSelectURL:(URL *)url {
-  if ([url isEqual:URL_ONE]) {
-    [self someLogic];
-    [which shouldBeDone:whenOne];
-  } else if ([url isEqual:URL_TWO]) {
-  
-  } ... AD INFINUM
-}
-
-Using blocks, we can abstract the equality checking:
-
-typedef void (^BasicBlock)(); // A block that takes no args and produces no value. A side-effect
-
-- (void)didSelectURL:(URL *)url {
-  // `when` takes the url to match, and the code to evaluate if it does
-  void (^when)(NSURL *, BasicBlock) = ^(NSURL *expectedURL, BasicBlock blk) {
-    if ([url isEqual:expectedURL]) { // Note, we're using the argument to didSelectURL in this block.
-      blk();
-    }
-  }
-  
-  when(URL_ONE, ^{
-    [self someLogic];
-    [which shouldBeDone:whenOne];
-  });
-  
-  when(URL_TWO, ^{
-    ...
-  });
-}
+Using blocks, we can abstract the equality checking and specify the URL handling in a much more declarative style.
+<script src="http://gist.github.com/329003.js?file=2.m"></script>
 
 `when` encapsulates the equality check against a specific NSURL instance, leaving us with much DRYer code.
 
-Now, a re-usable `when` constructor:
+We can then extract the definition of the `when` block, for use elsewhere in the codebase:
+<script src="http://gist.github.com/329003.js?file=3.m"></script>
 
-  typedef void (^WhenBlock)(id, BasicBlock);
-  typedef BOOL (^Predicate)(id);
-  WhenBlock constructWhen(Predicate pred) {
-      return [[^(id thing, BasicBlock blk) {
-                  if (pred(thing)) {
-                      blk();
-                  }
-              } copy] autorelease];
-  }
-  
 The code starts to look a little gnarly here, but there's not a lot to it. When `constructWhen` is given a predicate (which is a function from an `id` to a BOOL), it returns a function that does exactly the same thing as our original `when` did: it applies the predicate to some supplied value and executes the block when true.
 
 As blocks must be transferred to the heap when they are returned from functions, it is copied and autoreleased.
 
 Now, the creation of the `when` instance looks like this:
-
-  WhenBlock when = constructWhen(^(id expectedURL) {
-      return [[object URL] isEqual:expectedURL];
-  });
-  
-  when(URL_ONE, ^{
-    [self someLogic];
-    [which shouldBeDone:whenOne];
-  });
-  
-  ...
-  
-
-
-
+<script src="http://gist.github.com/329003.js?file=4.m"></script>
