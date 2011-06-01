@@ -4,22 +4,15 @@ title: Nick Partridge
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
+  <h1>Talks, Etc</h1>
   <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
+    <li><span>22 March 2010</span> &raquo; <a href="http://vimeo.com/10482466">Deriving Scalaz - presentation to the Melbourne Scala User Group</a></li>
   </ul>
   
-  <!-- <h1>Interviews, Talks, Etc</h1>
-  <ul class="posts">
-    <li><span>19 Nov 2009</span> &raquo; <a href="http://rubyconf2009.confreaks.com/19-nov-2009-10-25-bert-and-ernie-scaling-your-ruby-site-with-erlang-tom-preston-werner.html">RubyConf 2009 Talk: BERT and Ernie: Scaling your Ruby site with Erlang</a></li>
-    <li><span>21 Aug 2009</span> &raquo; <a href="http://www.linux-mag.com/cache/7486/1.html">Linux Magazine: The GitHub Hall of Fame - Jekyll Review</a></li>
-  </ul> -->
-  
   <h1>Open Source Projects</h1>
+
   <ul class="posts">
-    <li><a href="http://github.com/nkpart/kit/">Kit:</a> For managing the dependencies of your Xcode/iOS project.</li>
+    <li><a href="http://github.com/nkpart/kit/">Kit:</a> For managing the dependencies of your Xcode/iOS project.</li>  
     <li><a href="http://github.com/nkpart/scapps/">Scapps:</a> Functions to help with building apps using scalaz.http.</li>
     <li><a href="http://github.com/nkpart/belt/">Belt:</a> Strap it around scalaz.http to make things a little easier.</li>
     <li><a href="http://github.com/nkpart/Sage/">Sage:</a>A scala api for GAE, modelled on scala-query</li>
@@ -27,6 +20,13 @@ title: Nick Partridge
     <li><a href="http://code.google.com/p/scalaz/">Scalaz:</a> An attempt to make scala practical (but really it just makes it awesome.) </li>
     <li><a href="http://functionaljava.org/">Functional Java:</a> An attempt to make Java practical. </li>
     <li><a href="http://github.com/mogeneration/functionalkit/">FunctionalKit:</a> A port of Functional Java to Objective-C </li>
+  </ul>
+
+  <h1>Articles</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
   </ul>
 </div>
   
