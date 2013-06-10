@@ -1,0 +1,31 @@
+---
+layout: post
+title: Building new products is hard 
+---
+
+{{ page.title }}
+================
+<p class="meta">2 July 2012</p>
+
+We started a project at the beginning of the year. We had goals to ship within a few months, but software happened. We made a bunch of rookie mistakes. Mistakes we were wary of when we first started, but they happened anyway. Just because you know something is bad, doesn't mean you'll avoid it.
+
+There weren't technical failures. Or at least, any technical failures we had were inconsequential. Our failures were in product creation.
+
+Previously, our products have grown out direct pain in the company (or cash and specs from clients). This project, however, began from an internal desire to shift the direction of the business slightly. We had a loose vision statement* and it was up to us, the technical team, to build a product from it.
+
+* No on-site product owner
+* No product owner
+* Didn't train the product owner to make choices and *ship*
+* Lacked Authority ourselves to pick the MVP
+
+Inside our tech team, no one took the project and *owned* it. We worked on implementing features that fit it, but none of us would be using the project in the wild. We made lots of noise early about lacking direction, and needing a product owner from the business to help us drive things to where they needed to be. But we couldn't get the resource.
+
+Ultimately, we kept on plodding through. Without the drive a project champion can bring to ensure we're building the smallest thing that adds value, we built a lot of stuff that didn't necessarily matter, and blew the budget.
+
+There's a morale impact too, when no one is telling you exactly the impact of your work (by demanding it), it's easy to fall into a negative "Why am I doing this" mindset.
+
+#3. We didn't ship the MVP
+--------------------------
+* Failed at cutting back on scope
+
+* The vision was a single sentence, that could be articulated with a single word
